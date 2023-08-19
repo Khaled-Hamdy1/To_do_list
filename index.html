@@ -23,21 +23,22 @@
           </section>
         </header>
         <section class="todo__form-container">
+          <form class="todo__form">
           <button class="todo__form-btn">
             <i class="fa-solid fa-plus"></i>
           </button>
-          <form class="todo__form">
             <input
               type="text"
               class="todo__form-input"
               placeholder="Add new task"
+              type="submit"
             />
           </form>
         </section>
         <section class="menu">
           <div>
             <button class="menu__clear-btn">Clear all</button>
-            <p class="menu__clear__items-left">Items left: 3</p>
+            <p class="menu__clear__items-left">Items left: 0</p>
           </div>
           <ul class="menu__categories">
             <li class="menu__categories__category" onclick="renderTodoList()">

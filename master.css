@@ -103,15 +103,16 @@
 
 
 .todo__form-container{
-  position: relative;
   width: 100%;
-  display: flex;
-  gap: 10px;
   margin-top: 70px;
 }
 
 .todo__form {
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 10px;
 }
 
 .todo__form-input {

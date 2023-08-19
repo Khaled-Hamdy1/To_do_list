@@ -8,11 +8,12 @@ const todoList = [];
 function renderTodoList(status = "all") {
   const todoListElement = document.querySelector(".todos__container");
   let todoListHTML = "";
+  
+  const todonum = document.querySelector(".menu__clear__items-left");
+  todonum.innerHTML = `Items left: ${todoList.length}`;
 
   todoList.forEach((todo, index) => {
     if (status !== "all" && todo.status !== status) return;
-    const todonum = document.querySelector(".menu__clear__items-left");
-    todonum.innerHTML = `Items left: ${todoList.length}`;
     todoListHTML += `
     <div class="todos__item">
       <div class="todos__item-clock">
@@ -42,6 +43,7 @@ function renderTodoList(status = "all") {
 const todoAddbtn = document.querySelector(".todo__form-btn");
 
 todoAddbtn.addEventListener("click", (e) => {
+  e.preventDefault();
   const todoInput = document.querySelector(".todo__form-input");
   const todoText = todoInput.value;
   if (!todoText) {
