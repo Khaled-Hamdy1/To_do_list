@@ -12,7 +12,7 @@ function renderTodoList(status = "all") {
   todoList.forEach((todo, index) => {
     if (status !== "all" && todo.status !== status) return;
     const todonum = document.querySelector(".menu__clear__items-left");
-    todonum.innerHTML = `$Items left: ${todoList.length}`;
+    todonum.innerHTML = `Items left: ${todoList.length}`;
     todoListHTML += `
     <div class="todos__item">
       <div class="todos__item-clock">
