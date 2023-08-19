@@ -9,12 +9,11 @@ window.onload = renderTodoList;
 
 function renderTodoList() {
   let todoListHTML = "";
-  todonum.innerHTML = `Items left: ${todoList.length}`;
   todoCategoryText.innerHTML = `<span>${todoCategoryStatus}</span>`;
-
+  let todosCount = 0;
   todoList.forEach(({ status, time, text }, index) => {
     if (todoCategoryStatus !== "all" && status !== todoCategoryStatus) return;
-
+    todosCount++;
     todoListHTML += `
     <div class="todos__item">
       <div class="todos__item-clock">
@@ -38,6 +37,7 @@ function renderTodoList() {
     </div>
     `;
   });
+  todonum.innerHTML = `Items left: ${todosCount}`;
   todoListElement.innerHTML = todoListHTML;
 }
 
