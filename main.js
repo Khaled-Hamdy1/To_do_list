@@ -1,16 +1,19 @@
 const todoList = [];
-
+let todoCategory = 'all';
 // Get the todo form
 
 
 
 
-function renderTodoList(status = "all") {
+function renderTodoList(status = todoCategory) {
   const todoListElement = document.querySelector(".todos__container");
   let todoListHTML = "";
   
   const todonum = document.querySelector(".menu__clear__items-left");
   todonum.innerHTML = `Items left: ${todoList.length}`;
+
+  const todoCategory = document.querySelector(".todos__title span");
+  todoCategory.innerHTML = `<span>${status}</span>`;
 
   todoList.forEach((todo, index) => {
     if (status !== "all" && todo.status !== status) return;
@@ -51,7 +54,7 @@ todoAddbtn.addEventListener("click", (e) => {
   } else {
     const todo = {
       text: todoText,
-      status: "pending",
+      status: "active",
       time: new Date().toLocaleString("en-US", {
         hour: "numeric",
         minute: "numeric",
@@ -81,12 +84,12 @@ function ModifyElement(index) {
 }
 
 function changeStatus(index) {
-  if (todoList[index].status === "pending") {
+  if (todoList[index].status === "active") {
     todoList[index].status = "completed";
   } else {
-    todoList[index].status = "pending";
+    todoList[index].status = "active";
   }
-  renderTodoList();
+  renderTodoList(todoCategory);
 }
 
 const clearAll = document.querySelector(".menu__clear-btn");
@@ -95,3 +98,8 @@ clearAll.addEventListener("click", (e) => {
   todoList.splice(0, todoList.length);
   renderTodoList();
 });
+
+function changeCategory(status) {
+  todoCategory = status;
+  renderTodoList(todoCategory);
+}

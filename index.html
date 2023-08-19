@@ -41,18 +41,18 @@
             <p class="menu__clear__items-left">Items left: 0</p>
           </div>
           <ul class="menu__categories">
-            <li class="menu__categories__category" onclick="renderTodoList()">
+            <li class="menu__categories__category" onclick="changeCategory('all')">
               All
             </li>
             <li
               class="menu__categories__category"
-              onclick="renderTodoList('pending')"
+              onclick="changeCategory('active')"
             >
               Active
             </li>
             <li
               class="menu__categories__category"
-              onclick="renderTodoList('completed')"
+              onclick="changeCategory('completed')"
             >
               Completed
             </li>
