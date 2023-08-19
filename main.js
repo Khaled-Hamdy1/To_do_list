@@ -88,3 +88,10 @@ function changeStatus(index) {
   }
   renderTodoList();
 }
+
+const clearAll = document.querySelector(".menu__clear-btn");
+clearAll.addEventListener("click", (e) => {
+  e.preventDefault();
+  todoList.splice(0, todoList.length);
+  renderTodoList();
+});
