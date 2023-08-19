@@ -23,5 +23,5 @@ function getDate() {
   `;
   timeElement.innerHTML = `${time}`;
 }
-window.onload = getDate;
+window.addEventListener("load", getDate);
 setInterval(getDate, 1000);

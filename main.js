@@ -1,22 +1,23 @@
-const todoList = [];
-let todoCategory = 'all';
-// Get the todo form
+const todoList = JSON.parse(localStorage.getItem("todoList")) || [];
+const todoListElement = document.querySelector(".todos__container");
+const todonum = document.querySelector(".menu__clear__items-left");
+const todoCategoryText = document.querySelector(".todos__title span");
 
+let todoCategoryStatus = sessionStorage.getItem("todoCategoryStatus") || "all";
 
+window.onload = () => {
+  renderTodoList();
+};
 
-
-function renderTodoList(status = todoCategory) {
-  const todoListElement = document.querySelector(".todos__container");
+function renderTodoList() {
   let todoListHTML = "";
-  
-  const todonum = document.querySelector(".menu__clear__items-left");
+
   todonum.innerHTML = `Items left: ${todoList.length}`;
 
-  const todoCategory = document.querySelector(".todos__title span");
-  todoCategory.innerHTML = `<span>${status}</span>`;
+  todoCategoryText.innerHTML = `<span>${todoCategoryStatus}</span>`;
 
   todoList.forEach((todo, index) => {
-    if (status !== "all" && todo.status !== status) return;
+    if (todoCategoryStatus !== "all" && todo.status !== todoCategoryStatus) return;
     todoListHTML += `
     <div class="todos__item">
       <div class="todos__item-clock">
@@ -27,7 +28,7 @@ function renderTodoList(status = todoCategory) {
         <div
         name="status"
         class="todos__item-status ${todo.status}"
-        onclick="changeStatus(${index})"
+        onclick="changeTodoStatus(${index})"
         >
           <i class="fa-solid fa-check"></i>
         </div>
@@ -43,9 +44,9 @@ function renderTodoList(status = todoCategory) {
   todoListElement.innerHTML = todoListHTML;
 }
 
-const todoAddbtn = document.querySelector(".todo__form-btn");
+const todoForm = document.querySelector(".todo__form");
 
-todoAddbtn.addEventListener("click", (e) => {
+todoForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const todoInput = document.querySelector(".todo__form-input");
   const todoText = todoInput.value;
@@ -63,13 +64,17 @@ todoAddbtn.addEventListener("click", (e) => {
       }),
     };
     todoList.push(todo);
+    localStorage.setItem("todoList", JSON.stringify(todoList));
     todoInput.value = "";
     renderTodoList();
   }
 });
 
 function deleteElement(index) {
+  let check = confirm("Are you sure you want to delete this todo?");
+  if (!check) return;
   todoList.splice(index, 1);
+  localStorage.setItem("todoList", JSON.stringify(todoList));
   renderTodoList();
 }
 
@@ -79,27 +84,31 @@ function ModifyElement(index) {
     alert("Please enter a todo");
   } else {
     todoList[index].text = todoText;
+    localStorage.setItem("todoList", JSON.stringify(todoList));
     renderTodoList();
   }
 }
 
-function changeStatus(index) {
+function changeTodoStatus(index) {
   if (todoList[index].status === "active") {
     todoList[index].status = "completed";
   } else {
     todoList[index].status = "active";
   }
-  renderTodoList(todoCategory);
+  localStorage.setItem("todoList", JSON.stringify(todoList));
+  renderTodoList();
 }
 
 const clearAll = document.querySelector(".menu__clear-btn");
 clearAll.addEventListener("click", (e) => {
   e.preventDefault();
   todoList.splice(0, todoList.length);
+  localStorage.removeItem("todoList");
   renderTodoList();
 });
 
 function changeCategory(status) {
-  todoCategory = status;
-  renderTodoList(todoCategory);
+  todoCategoryStatus = status;
+  sessionStorage.setItem("todoCategoryStatus", todoCategoryStatus);
+  renderTodoList(todoCategoryStatus);
 }
