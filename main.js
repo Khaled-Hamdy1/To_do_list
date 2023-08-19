@@ -69,7 +69,8 @@ function deleteElement(index) {
 }
 
 function ModifyElement(index) {
-  const todoText = prompt("Enter new todo");
+  const todoText = prompt("Enter new todo", todoList[index].text);
+  const a7a = context
   if (!todoText) {
     alert("Please enter a todo");
   } else {

@@ -40,55 +40,26 @@
             <p class="menu__clear__items-left">Items left: 3</p>
           </div>
           <ul class="menu__categories">
-            <li class="menu__categories__category" onclick="renderTodoList()">All</li>
-            <li class="menu__categories__category" onclick="renderTodoList('pending')">Active</li>
-            <li class="menu__categories__category" onclick="renderTodoList('completed')">Completed</li>
+            <li class="menu__categories__category" onclick="renderTodoList()">
+              All
+            </li>
+            <li
+              class="menu__categories__category"
+              onclick="renderTodoList('pending')"
+            >
+              Active
+            </li>
+            <li
+              class="menu__categories__category"
+              onclick="renderTodoList('completed')"
+            >
+              Completed
+            </li>
           </ul>
         </section>
         <secion class="todos">
           <h2 class="todos__title"><span>All</span> todos</h2>
-          <div class="todos__container">
-            <div class="todos__item">
-              <div class="todos__item-clock">
-                <i>🕰️</i>
-                <span>4:34:44 PM</span>
-              </div>
-              <div class="todos__item__content">
-                <div
-                  name="status"
-                  class="todos__item-status pending"
-                >
-                  <i class="fa-solid fa-check"></i>
-                </div>
-                <p class="todos__item-text">Lorem ipsum dolor sit amet.</p>
-                <div class="todos__item-btns">
-                  <button class="todos__item-btn__edit">🖊️</button>
-                  <button class="todos__item-btn__del">X</button>
-                </div>
-              </div>
-            </div>
-            <div class="todos__item">
-              <div class="todos__item-clock">
-                <i>🕰️</i>
-                <span>4:34:44 PM</span>
-              </div>
-              <div class="todos__item__content">
-                <div
-                name="status"
-                class="todos__item-status pending"
-                id="item-status1"
-                >
-                  <i class="fa-solid fa-check"></i>
-                </div>
-                <p class="todos__item-text" id="todo-text1">${todo.text}</p>
-                <div class="todos__item-btns">
-                  <button class="todos__item-btn__edit" id="todo-1">🖊️</button>
-                  <button class="todos__item-btn__del" id="todo-1">X</button>
-                </div>
-              </div>
-            </div>
-            
-          </div>
+          <div class="todos__container"></div>
         </secion>
       </div>
     </div>
